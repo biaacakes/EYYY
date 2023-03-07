@@ -1,52 +1,72 @@
+import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
 import java.awt.*;
-import java.beans.EventHandler;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+public class MainMenu extends JFrame {
 
-public class MainMenu extends JFrame  {
-    MainMenu() {
-        super("Snake Game");
-        this.setLayout(new FlowLayout());
+    MainMenu(){
 
-        //PICKING OF PHOTO FOR ICON
-        ImageIcon icon= new ImageIcon("nokia.gif");
-        //ICON APPEARANCE ON SCREEN
-        JLabel label= new JLabel();
-        label.setIcon(icon);
+        JLabel imageLabel= new JLabel();
+        ImageIcon snakeImage= new ImageIcon("bgdraft.png");
+        imageLabel.setIcon(snakeImage);
+        this.add(imageLabel);
+        this.setResizable(false);
+
+       
+        JButton startButton = new JButton();
+        ImageIcon startImageIcon = new ImageIcon("startbutton.png");
+
+        startButton.setIcon(startImageIcon);
+        setLayout(new GridBagLayout());
+        GridBagConstraints g =new GridBagConstraints();
+        g.gridx=0;
+        g.gridy=0;
+
         
-        JButton button= new JButton ();
-        button.setText("START NA YAWA KAKAPOY MANI UY");
-        button.setFont(new Font("Consolas", Font.BOLD, 20));
-        button.setBackground(Color.WHITE);
-    
-        EventHandler handler= new EventHandler();
-        button.addActionListener(handler);
-
-
-        this.add(label);
-        this.add(button);
+        
+        setSize(30,30);
+        setVisible(true);
+        
+        
+        
+        EventHandler handler = new EventHandler();
+        startButton.addActionListener(handler);
+        // Add button to frame
+        g.gridx=0;
+        g.gridy=5;
+        startButton.setMargin(getInsets());
+        startButton.setBorder(BorderFactory.createEtchedBorder());
+        this.add(startButton,g);
+      
+       
+       
+        this.setLayout(new FlowLayout());
+        this.setTitle("Snake Game");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(1100,650);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color(237,241,214));
+       
 
     }
-    //EVENT HANDLER CLASS
-    private class EventHandler implements ActionListener {
+    // Event Handler
+    private class EventHandler implements ActionListener{
 
         public void actionPerformed(ActionEvent event) {
-            //JOptionPane.showMessageDialog(null, "HELLO BIANCA!");
-
-            //SWITCHES TO GAME
+            // open game frame
             new DifficultyMenu();
-
-            //Closes Main Menu
+            // Close main menu frame
             dispose();
         }
-    }
+}
 }
